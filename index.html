@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INMUN 2026 — Indian Model United Nations | Ryan International Group of Schools</title>
+<meta name="description" content="Indian Model United Nations 2026 — committees, training, handbook, documents and awards. Ryan International Group of Schools.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<div id="progress"></div>
+<div id="loader"><div class="ring"></div><p>INMUN 2026</p></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">
+      <span class="mark">IN</span>
+      <span class="wordmark">INMUN<em>2026</em></span>
+    </a>
+    <nav class="links">
+      <a href="#committees" class="navlink">Committees</a>
+      <a href="#documents" class="navlink">Documents</a>
+      <a href="#training" class="navlink">Training</a>
+      <a href="#awards" class="navlink">Awards</a>
+      <a href="#handbook" class="navlink">Handbook</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="https://ryaninmun2026.netlify.app/" target="_blank" class="btn small">Participation Guide</a>
+      <button class="burger" id="burger" aria-label="menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="aurora"></div>
+  <div class="hero-inner">
+    <p class="eyebrow"><span class="dot"></span> Ryan International Group of Schools presents</p>
+    <h1>Indian Model<br><span class="grad">United Nations 2026</span></h1>
+    <p class="hero-sub">Nine committees. One World Press. Two extraordinary days of diplomacy, debate and delegation — with every guide, worksheet, document and award, in one place.</p>
+    <div class="hero-actions">
+      <a href="#committees" class="btn">Enter Committee Hall</a>
+      <a href="#handbook" class="btn ghost">Read the Handbook</a>
+    </div>
+    <div class="metrics">
+      <div class="metric" data-to="12"><b>0</b><span>Committees & Tracks</span></div>
+      <div class="metric" data-to="5"><b>0</b><span>Training Sessions</span></div>
+      <div class="metric" data-to="154"><b>0</b><span>Awards Conferred</span></div>
+      <div class="metric" data-to="67"><b>0</b><span>Indexed Documents</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll</div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee-wrap"><div class="marquee" id="marquee"></div></div>
+
+<!-- ============ COMMITTEES ============ -->
+<section class="sec" id="committees">
+  <header class="sec-head reveal">
+    <p class="sec-no">01</p>
+    <h2>The Committees</h2>
+    <p class="sec-lead">Each committee convenes around one agenda and ends with one document. Open a card for its brief, final-document type and executive board.</p>
+  </header>
+  <div class="filterbar reveal" id="trackFilter">
+    <button class="chip active" data-track="All">All tracks</button>
+    <button class="chip" data-track="Plenary">Plenary</button>
+    <button class="chip" data-track="Judicial">Judicial</button>
+    <button class="chip" data-track="Specialised">Specialised</button>
+    <button class="chip" data-track="Bloc">Bloc</button>
+    <button class="chip" data-track="Negotiated">Negotiated</button>
+    <button class="chip" data-track="World Press">World Press</button>
+  </div>
+  <div class="cgrid" id="cgrid"></div>
+</section>
+
+<!-- ============ DOCUMENTS ============ -->
+<section class="sec alt" id="documents">
+  <header class="sec-head reveal">
+    <p class="sec-no">02</p>
+    <h2>Document Library</h2>
+    <p class="sec-lead">Every guide, worksheet, quiz, marksheet, tally and official document across all committees — indexed and searchable.</p>
+  </header>
+  <div class="docs-tools reveal">
+    <input type="search" id="docSearch" placeholder="Filter documents…">
+    <select id="docCmt"><option value="All">All committees</option></select>
+    <span class="count" id="docCount"></span>
+  </div>
+  <div class="doclist reveal" id="doclist"></div>
+</section>
+
+<!-- ============ TRAINING ============ -->
+<section class="sec" id="training">
+  <header class="sec-head reveal">
+    <p class="sec-no">03</p>
+    <h2>Training Sessions</h2>
+    <p class="sec-lead">Five EB-led sessions, 17–27 August · 6:00–7:30 PM IST · Live on Zoom.</p>
+  </header>
+  <div class="zoom-note reveal">
+    <div><b>Meeting ID</b> 849 216 4833</div><div><b>Passcode</b> 143143</div>
+    <a class="btn small" href="https://zoom.us/j/8492164833?pwd=bXcrZkdUbHA5Yml1c3NuZDVyTW9jdz09" target="_blank">Join Zoom</a>
+    <a class="btn small ghost" href="https://drive.google.com/drive/folders/1jAW4jr6YhM70Jmcl6f1zK_iGddGNwt9O" target="_blank">Recordings</a>
+  </div>
+  <div class="timeline" id="timeline"></div>
+</section>
+
+<!-- ============ AWARDS ============ -->
+<section class="sec alt" id="awards">
+  <header class="sec-head reveal">
+    <p class="sec-no">04</p>
+    <h2>Awards</h2>
+    <p class="sec-lead">Congratulations to every delegate, journalist, photographer and caricaturist recognised across all nine committees and World Press.</p>
+  </header>
+
+  <div class="podium-wrap reveal" id="podium"></div>
+
+  <div class="awards-layout">
+    <div class="awards-main">
+      <div class="filterbar reveal" id="tierFilter">
+        <button class="chip active" data-tier="all">Everything</button>
+        <button class="chip" data-tier="best">Best Delegate</button>
+        <button class="chip" data-tier="hc">High Commendation</button>
+        <button class="chip" data-tier="sm">Special Mention</button>
+        <button class="chip" data-tier="oos">Outstation</button>
+      </div>
+      <div class="awards-tools reveal">
+        <select id="awCmt"></select>
+        <input type="search" id="awSearch" placeholder="Search delegate, country or school…">
+      </div>
+      <div id="awardGroups"></div>
+    </div>
+    <aside class="awards-side">
+      <div class="panel reveal"><h4>School Leaderboard</h4><p class="hint">Ranked by total awards received</p><div id="leaderboard"></div></div>
+      <div class="panel reveal"><h4>Awards by Committee</h4><div id="awBars"></div></div>
+      <div class="panel reveal"><h4>Most Represented Countries</h4><div id="countryBars"></div></div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ HANDBOOK ============ -->
+<section class="sec" id="handbook">
+  <header class="sec-head reveal">
+    <p class="sec-no">05</p>
+    <h2>The Delegate Handbook</h2>
+    <p class="sec-lead">The one shared guide — from first-timer to confident delegate. ~43 min read · Read-aloud available.</p>
+  </header>
+  <div class="hb-layout">
+    <aside class="hb-toc reveal">
+      <div class="toc-head">Contents <span id="hbProg"></span></div>
+      <div class="toc-bar"><i id="hbBar"></i></div>
+      <ol id="toc"></ol>
+      <a class="btn small ghost full" href="https://portal-inmun26.netlify.app/guides-pdf/handbook.pdf" target="_blank">Download PDF</a>
+    </aside>
+    <article class="hb-body reveal" id="hbBody"></article>
+  </div>
+</section>
+
+<!-- ============ RESOURCES ============ -->
+<section class="sec alt" id="resources">
+  <header class="sec-head reveal">
+    <p class="sec-no">06</p>
+    <h2>Resources & Submissions</h2>
+    <p class="sec-lead">Where everything lives — guides, matrices, recordings and the forms you submit to.</p>
+  </header>
+  <div class="resgrid" id="resgrid"></div>
+</section>
+
+<footer>
+  <img src="https://portal-inmun26.netlify.app/assets/logos/ryan-white-full.png" onerror="this.style.display='none'" alt="Ryan International Group of Institutions">
+  <p>INMUN 2026 · Indian Model United Nations · Ryan International Group of Schools</p>
+  <p class="dim">Secretary-General Vishrut Mishra · MUN Head Hemanshi Dedhia · MUN Advisor Vedansh Arora — <a href="mailto:vedansh.arora@ryangroup.org">vedansh.arora@ryangroup.org</a></p>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/handbook.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
