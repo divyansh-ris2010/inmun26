@@ -4,15 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>INMUN 2026 — Indian Model United Nations | Ryan International Group of Schools</title>
-<meta name="description" content="Indian Model United Nations 2026 — committees, training, handbook, documents and awards. Ryan International Group of Schools.">
+<meta name="description" content="Indian Model United Nations 2026 — Premier global diplomatic simulation. 9 committees, World Press, interactive 3D summit portal, delegate handbook, official documents and awards.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
 
 <div id="progress"></div>
-<div id="loader"><div class="ring"></div><p>INMUN 2026</p></div>
+<div id="loader"><div class="ring"></div><p>INMUN 2026 · IN SESSION</p></div>
 
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
@@ -20,6 +21,7 @@
     <a class="brand" href="#top">
       <span class="mark">IN</span>
       <span class="wordmark">INMUN<em>2026</em></span>
+      <span class="live-pill"><span class="live-dot"></span> SUMMIT LIVE</span>
     </a>
     <nav class="links">
       <a href="#committees" class="navlink">Committees</a>
@@ -27,47 +29,133 @@
       <a href="#training" class="navlink">Training</a>
       <a href="#awards" class="navlink">Awards</a>
       <a href="#handbook" class="navlink">Handbook</a>
+      <a href="#resources" class="navlink">Resources</a>
     </nav>
     <div class="nav-cta">
-      <a href="https://ryaninmun2026.netlify.app/" target="_blank" class="btn small">Participation Guide</a>
+      <button class="nav-tool-btn" id="btnAudioToggle" title="Toggle Summit Ambience">🔊 Audio ON</button>
+      <button class="nav-tool-btn search-trigger" id="cmdTriggerBtn" title="Search Everything (Ctrl+K)">
+        <span class="search-icon">🔍</span>
+        <span class="search-txt">Search</span>
+        <kbd class="kbd-hint">Ctrl K</kbd>
+      </button>
+      <a href="https://ryaninmun2026.netlify.app/" target="_blank" class="btn small nav-guide-btn">Guide</a>
       <button class="burger" id="burger" aria-label="menu">☰</button>
     </div>
   </div>
 </header>
 
-<!-- ============ HERO ============ -->
+<!-- ============ HERO 3D CINEMATIC ============ -->
 <section class="hero" id="top">
-  <div class="aurora"></div>
+  <!-- 3D Three.js WebGL Globe Stage -->
+  <div class="hero-3d-wrap">
+    <div id="globeCanvasContainer"></div>
+    <div class="globe-vignette"></div>
+  </div>
+
   <div class="hero-inner">
-    <p class="eyebrow"><span class="dot"></span> Ryan International Group of Schools presents</p>
-    <h1>Indian Model<br><span class="grad">United Nations 2026</span></h1>
-    <p class="hero-sub">Nine committees. One World Press. Two extraordinary days of diplomacy, debate and delegation — with every guide, worksheet, document and award, in one place.</p>
-    <div class="hero-actions">
-      <a href="#committees" class="btn">Enter Committee Hall</a>
-      <a href="#handbook" class="btn ghost">Read the Handbook</a>
+    <div class="eyebrow-container">
+      <p class="eyebrow">
+        <span class="dot"></span> Ryan International Group of Schools presents
+      </p>
+      <span class="summit-session-badge">26th Global Edition</span>
     </div>
+
+    <h1 class="hero-title">
+      Indian Model<br>
+      <span class="grad-gold">United Nations 2026</span>
+    </h1>
+
+    <p class="hero-sub">
+      Nine committees. One World Press. Two extraordinary days of high-stakes diplomacy, international debate, and multilateral consensus — with every background dossier, prep worksheet, and accolade unified in one cinematic digital assembly hall.
+    </p>
+
+    <!-- Operational Countdown & Live HUD -->
+    <div class="summit-hud-card">
+      <div class="hud-header">
+        <span class="hud-status"><span class="hud-blink"></span> DIPLOMATIC QUORUM ACTIVE · OFFICIAL SUMMIT PORTAL</span>
+        <span class="hud-coord">28.6139° N, 77.2090° E</span>
+      </div>
+      <div class="countdown-matrix">
+        <div class="cd-box"><b id="cd-days">00</b><span>DAYS</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-box"><b id="cd-hours">00</b><span>HOURS</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-box"><b id="cd-mins">00</b><span>MINUTES</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-box"><b id="cd-secs">00</b><span>SECONDS</span></div>
+      </div>
+    </div>
+
+    <!-- Hero Interactive CTAs -->
+    <div class="hero-actions">
+      <a href="#committees" class="btn btn-glow">
+        <span class="btn-icon">🏛️</span> Enter Committee Hall
+      </a>
+      <button class="btn btn-gavel" id="btnGavelTrigger">
+        <span class="btn-icon">⚖️</span> Strike Ceremonial Gavel
+      </button>
+      <button class="btn ghost btn-quiz" id="btnQuizTrigger">
+        <span class="btn-icon">🧭</span> Find My Committee Quiz
+      </button>
+      <a href="#handbook" class="btn ghost">
+        <span class="btn-icon">📖</span> Delegate Handbook
+      </a>
+    </div>
+
+    <!-- 3D Glassmorphic Stats -->
     <div class="metrics">
-      <div class="metric" data-to="12"><b>0</b><span>Committees & Tracks</span></div>
-      <div class="metric" data-to="5"><b>0</b><span>Training Sessions</span></div>
-      <div class="metric" data-to="154"><b>0</b><span>Awards Conferred</span></div>
-      <div class="metric" data-to="67"><b>0</b><span>Indexed Documents</span></div>
+      <div class="metric" data-to="12">
+        <div class="metric-icon">🌐</div>
+        <b>0</b>
+        <span>Committees & Tracks</span>
+      </div>
+      <div class="metric" data-to="5">
+        <div class="metric-icon">🎙️</div>
+        <b>0</b>
+        <span>Training Sessions</span>
+      </div>
+      <div class="metric" data-to="154">
+        <div class="metric-icon">🏆</div>
+        <b>0</b>
+        <span>Awards Conferred</span>
+      </div>
+      <div class="metric" data-to="67">
+        <div class="metric-icon">📑</div>
+        <b>0</b>
+        <span>Indexed Documents</span>
+      </div>
     </div>
   </div>
-  <div class="scroll-hint">scroll</div>
+
+  <div class="scroll-hint">
+    <span>EXPLORE ASSEMBLY</span>
+    <div class="scroll-arrow"></div>
+  </div>
 </section>
 
-<!-- ============ MARQUEE ============ -->
-<div class="marquee-wrap"><div class="marquee" id="marquee"></div></div>
+<!-- ============ MARQUEE TICKER ============ -->
+<div class="marquee-wrap">
+  <div class="marquee" id="marquee"></div>
+</div>
 
-<!-- ============ COMMITTEES ============ -->
+<!-- ============ COMMITTEES SECTION ============ -->
 <section class="sec" id="committees">
   <header class="sec-head reveal">
-    <p class="sec-no">01</p>
-    <h2>The Committees</h2>
-    <p class="sec-lead">Each committee convenes around one agenda and ends with one document. Open a card for its brief, final-document type and executive board.</p>
+    <div class="sec-badge">CHAMBER 01</div>
+    <h2>The Diplomatic Committees</h2>
+    <p class="sec-lead">Each committee convenes around one defining global agenda and culminates in a historic binding document. Explore the 3D spatial deck or browse the executive grid.</p>
+
+    <!-- View Mode Switcher -->
+    <div class="view-switch-bar">
+      <span class="view-switch-lbl">Chamber View:</span>
+      <button class="view-btn active" id="viewToggleDeck">🎴 3D Spatial Deck</button>
+      <button class="view-btn" id="viewToggleGrid">▦ Executive Grid</button>
+    </div>
   </header>
+
+  <!-- Track Filter Chips -->
   <div class="filterbar reveal" id="trackFilter">
-    <button class="chip active" data-track="All">All tracks</button>
+    <button class="chip active" data-track="All">All Tracks</button>
     <button class="chip" data-track="Plenary">Plenary</button>
     <button class="chip" data-track="Judicial">Judicial</button>
     <button class="chip" data-track="Specialised">Specialised</button>
@@ -75,48 +163,83 @@
     <button class="chip" data-track="Negotiated">Negotiated</button>
     <button class="chip" data-track="World Press">World Press</button>
   </div>
-  <div class="cgrid" id="cgrid"></div>
+
+  <!-- 3D Deck View Container -->
+  <div class="deck-view-container" id="deckViewContainer">
+    <div class="deck-stage">
+      <div class="deck-slides" id="cdeck-slides"></div>
+    </div>
+    <div class="deck-nav-controls">
+      <button class="deck-arrow-btn" id="deckPrev" aria-label="Previous Committee">‹</button>
+      <span class="deck-counter" id="deckIndicator">1 / 12</span>
+      <button class="deck-arrow-btn" id="deckNext" aria-label="Next Committee">›</button>
+    </div>
+  </div>
+
+  <!-- Classic Grid View Container (Hidden by default, toggleable) -->
+  <div class="cgrid" id="cgrid" style="display:none"></div>
 </section>
 
-<!-- ============ DOCUMENTS ============ -->
+<!-- ============ DOCUMENTS SECTION ============ -->
 <section class="sec alt" id="documents">
   <header class="sec-head reveal">
-    <p class="sec-no">02</p>
-    <h2>Document Library</h2>
-    <p class="sec-lead">Every guide, worksheet, quiz, marksheet, tally and official document across all committees — indexed and searchable.</p>
+    <div class="sec-badge">CHAMBER 02</div>
+    <h2>Diplomatic Document Library</h2>
+    <p class="sec-lead">Every background guide, prep worksheet, quiz, marksheet, live recognition tally, and official document across all nine committees and World Press — indexed, searchable, and verified.</p>
   </header>
   <div class="docs-tools reveal">
-    <input type="search" id="docSearch" placeholder="Filter documents…">
+    <div class="docs-search-wrap">
+      <span class="search-lens">🔎</span>
+      <input type="search" id="docSearch" placeholder="Search across 67 summit documents, topics, or keywords…">
+    </div>
     <select id="docCmt"><option value="All">All committees</option></select>
     <span class="count" id="docCount"></span>
   </div>
   <div class="doclist reveal" id="doclist"></div>
 </section>
 
-<!-- ============ TRAINING ============ -->
+<!-- ============ TRAINING SESSIONS ============ -->
 <section class="sec" id="training">
   <header class="sec-head reveal">
-    <p class="sec-no">03</p>
-    <h2>Training Sessions</h2>
-    <p class="sec-lead">Five EB-led sessions, 17–27 August · 6:00–7:30 PM IST · Live on Zoom.</p>
+    <div class="sec-badge">CHAMBER 03</div>
+    <h2>Executive Board Training</h2>
+    <p class="sec-lead">Five EB-led masterclasses covering Rules of Procedure, foreign policy argumentation, draft resolutions, and committee doubt-solving.</p>
   </header>
   <div class="zoom-note reveal">
-    <div><b>Meeting ID</b> 849 216 4833</div><div><b>Passcode</b> 143143</div>
-    <a class="btn small" href="https://zoom.us/j/8492164833?pwd=bXcrZkdUbHA5Yml1c3NuZDVyTW9jdz09" target="_blank">Join Zoom</a>
-    <a class="btn small ghost" href="https://drive.google.com/drive/folders/1jAW4jr6YhM70Jmcl6f1zK_iGddGNwt9O" target="_blank">Recordings</a>
+    <div class="zoom-box">
+      <span class="zoom-lbl">Meeting ID</span>
+      <b class="zoom-val">849 216 4833</b>
+    </div>
+    <div class="zoom-box">
+      <span class="zoom-lbl">Passcode</span>
+      <b class="zoom-val">143143</b>
+    </div>
+    <div class="zoom-actions">
+      <a class="btn small" href="https://zoom.us/j/8492164833?pwd=bXcrZkdUbHA5Yml1c3NuZDVyTW9jdz09" target="_blank">🎥 Join Live Zoom</a>
+      <a class="btn small ghost" href="https://drive.google.com/drive/folders/1jAW4jr6YhM70Jmcl6f1zK_iGddGNwt9O" target="_blank">📁 Session Recordings</a>
+    </div>
   </div>
   <div class="timeline" id="timeline"></div>
 </section>
 
-<!-- ============ AWARDS ============ -->
+<!-- ============ AWARDS & HONOURS ============ -->
 <section class="sec alt" id="awards">
   <header class="sec-head reveal">
-    <p class="sec-no">04</p>
-    <h2>Awards</h2>
-    <p class="sec-lead">Congratulations to every delegate, journalist, photographer and caricaturist recognised across all nine committees and World Press.</p>
+    <div class="sec-badge">CHAMBER 04</div>
+    <h2>Awards & Laureates</h2>
+    <p class="sec-lead">Honouring the exceptional delegates, journalists, photographers, and caricaturists recognised across all committees for diplomacy, oratory, and leadership.</p>
+    <div class="celebrate-btn-wrap">
+      <button class="btn btn-celebrate" id="btnCelebrateLaureates">
+        🎉 Celebrate Laureates
+      </button>
+    </div>
   </header>
 
-  <div class="podium-wrap reveal" id="podium"></div>
+  <!-- 3D Podium for Best Delegates -->
+  <div class="podium-section">
+    <h3 class="podium-title">👑 Best Delegate Roll of Honour</h3>
+    <div class="podium-wrap reveal" id="podium"></div>
+  </div>
 
   <div class="awards-layout">
     <div class="awards-main">
@@ -129,54 +252,134 @@
       </div>
       <div class="awards-tools reveal">
         <select id="awCmt"></select>
-        <input type="search" id="awSearch" placeholder="Search delegate, country or school…">
+        <input type="search" id="awSearch" placeholder="Search delegate, country, or school…">
       </div>
       <div id="awardGroups"></div>
     </div>
     <aside class="awards-side">
-      <div class="panel reveal"><h4>School Leaderboard</h4><p class="hint">Ranked by total awards received</p><div id="leaderboard"></div></div>
-      <div class="panel reveal"><h4>Awards by Committee</h4><div id="awBars"></div></div>
-      <div class="panel reveal"><h4>Most Represented Countries</h4><div id="countryBars"></div></div>
+      <div class="panel reveal">
+        <h4>🏫 School Delegation Leaderboard</h4>
+        <p class="hint">Ranked by total awards conferred</p>
+        <div id="leaderboard"></div>
+      </div>
+      <div class="panel reveal">
+        <h4>📊 Awards by Committee</h4>
+        <div id="awBars"></div>
+      </div>
+      <div class="panel reveal">
+        <h4>🌍 Member State Representations</h4>
+        <div id="countryBars"></div>
+      </div>
     </aside>
   </div>
 </section>
 
-<!-- ============ HANDBOOK ============ -->
+<!-- ============ DELEGATE HANDBOOK ============ -->
 <section class="sec" id="handbook">
   <header class="sec-head reveal">
-    <p class="sec-no">05</p>
+    <div class="sec-badge">CHAMBER 05</div>
     <h2>The Delegate Handbook</h2>
-    <p class="sec-lead">The one shared guide — from first-timer to confident delegate. ~43 min read · Read-aloud available.</p>
+    <p class="sec-lead">The definitive handbook — from first-time delegate to confident resolution author. Complete Rules of Procedure, scoring criteria, and interactive self-assessment.</p>
   </header>
   <div class="hb-layout">
     <aside class="hb-toc reveal">
-      <div class="toc-head">Contents <span id="hbProg"></span></div>
+      <div class="toc-head">Contents <span id="hbProg">0%</span></div>
       <div class="toc-bar"><i id="hbBar"></i></div>
       <ol id="toc"></ol>
-      <a class="btn small ghost full" href="https://portal-inmun26.netlify.app/guides-pdf/handbook.pdf" target="_blank">Download PDF</a>
+      <a class="btn small ghost full" href="https://portal-inmun26.netlify.app/guides-pdf/handbook.pdf" target="_blank">📥 Download Handbook PDF</a>
     </aside>
     <article class="hb-body reveal" id="hbBody"></article>
   </div>
 </section>
 
-<!-- ============ RESOURCES ============ -->
+<!-- ============ RESOURCES & SUBMISSIONS ============ -->
 <section class="sec alt" id="resources">
   <header class="sec-head reveal">
-    <p class="sec-no">06</p>
-    <h2>Resources & Submissions</h2>
-    <p class="sec-lead">Where everything lives — guides, matrices, recordings and the forms you submit to.</p>
+    <div class="sec-badge">CHAMBER 06</div>
+    <h2>Summit Portals & Submissions</h2>
+    <p class="sec-lead">Direct gateways to matrices, grievance redressal, crash courses, Zoom rooms, and position paper drives.</p>
   </header>
   <div class="resgrid" id="resgrid"></div>
 </section>
 
+<!-- ============ FOOTER ============ -->
 <footer>
-  <img src="https://portal-inmun26.netlify.app/assets/logos/ryan-white-full.png" onerror="this.style.display='none'" alt="Ryan International Group of Institutions">
-  <p>INMUN 2026 · Indian Model United Nations · Ryan International Group of Schools</p>
-  <p class="dim">Secretary-General Vishrut Mishra · MUN Head Hemanshi Dedhia · MUN Advisor Vedansh Arora — <a href="mailto:vedansh.arora@ryangroup.org">vedansh.arora@ryangroup.org</a></p>
+  <div class="footer-inner">
+    <img src="https://portal-inmun26.netlify.app/assets/logos/ryan-white-full.png" onerror="this.style.display='none'" alt="Ryan International Group of Institutions" class="footer-logo">
+    <h3 class="footer-title">INDIAN MODEL UNITED NATIONS 2026</h3>
+    <p class="footer-sub">Ryan International Group of Schools · Premier Diplomatic Simulation</p>
+    <div class="footer-credits">
+      <p>Secretary-General: <b>Vishrut Mishra</b> · MUN Head: <b>Hemanshi Dedhia</b> · MUN Advisor: <b>Vedansh Arora</b></p>
+      <p class="dim">Direct Advisory Inquiries: <a href="mailto:vedansh.arora@ryangroup.org">vedansh.arora@ryangroup.org</a></p>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 INMUN · Ryan International Group of Schools. All rights reserved.</span>
+    </div>
+  </div>
 </footer>
 
+<!-- ============ MODAL 1: CEREMONIAL GAVEL ============ -->
+<div class="modal-backdrop" id="gavelModal">
+  <div class="modal-card gavel-modal-card">
+    <button class="modal-close-btn" id="gavelModalClose">✕</button>
+    <span class="eyebrow"><span class="dot"></span> Ceremonial Assembly Gavel</span>
+    <h2 class="modal-title">Call the House to Order</h2>
+    <p class="modal-desc">Click the ceremonial gavel below to strike the sounding block and declare the committee in session.</p>
+    
+    <div class="gavel-stage">
+      <div class="gavel-shockwave" id="gavelShockwave"></div>
+      <div class="gavel-graphic-container" id="gavelGraphic">
+        <div class="gavel-head"></div>
+        <div class="gavel-handle"></div>
+        <div class="sounding-block"></div>
+      </div>
+      <p class="gavel-instruction">⚡ TAP GAVEL TO STRIKE</p>
+    </div>
+
+    <div class="gavel-status" id="gavelStatusText">
+      <span class="sub-lead">Awaiting the chair's call...</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODAL 2: COMMITTEE MATCHER QUIZ ============ -->
+<div class="modal-backdrop" id="quizModal">
+  <div class="modal-card quiz-modal-card">
+    <button class="modal-close-btn" id="quizModalClose">✕</button>
+    <div id="quizModalBody"></div>
+  </div>
+</div>
+
+<!-- ============ MODAL 3: COMMITTEE 3D DOSSIER ============ -->
+<div class="modal-backdrop" id="dossierModal">
+  <div class="modal-card dossier-modal-card">
+    <button class="modal-close-btn" id="dossierModalClose">✕</button>
+    <div id="dossierModalBody"></div>
+  </div>
+</div>
+
+<!-- ============ MODAL 4: COMMAND PALETTE (CTRL+K) ============ -->
+<div class="modal-backdrop" id="cmdModal">
+  <div class="modal-card cmd-modal-card">
+    <div class="cmd-input-wrap">
+      <span class="cmd-icon">🔍</span>
+      <input type="text" id="cmdInput" placeholder="Search committees, documents, awards, handbook chapters…" autocomplete="off">
+      <button class="cmd-close-kbd" id="cmdCloseBtn">ESC</button>
+    </div>
+    <div class="cmd-results" id="cmdResults"></div>
+  </div>
+</div>
+
+<!-- Scripts (CDN + Local Engine) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="js/world-data.js"></script>
 <script src="js/data.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/three-globe.js"></script>
+<script src="js/interactive.js"></script>
 <script src="js/handbook.js"></script>
 <script src="js/app.js"></script>
+
 </body>
 </html>
